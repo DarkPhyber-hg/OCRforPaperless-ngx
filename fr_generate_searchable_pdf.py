@@ -3,6 +3,7 @@
 # pip install --upgrade azure-ai-formrecognizer>=3.3 pypdf>=3.0 reportlab pillow pdf2image
 import sys
 import io
+import os
 import math
 import argparse
 from pdf2image import convert_from_path
@@ -15,8 +16,8 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import DocumentAnalysisClient
 
 # Please provide your Azure Form Recognizer endpoint and key
-endpoint = YOUR_FORM_RECOGNIZER_ENDPOINT
-key = YOUR_FORM_RECOGNIZER_KEY
+endpoint = os.getenv("PAPERLESS_AZURE_ENDPOINT")
+key = os.getenv("PAPERLESS_AZURE_FORM_RECOGNIZER_KEY")
 
 def dist(p1, p2):
     return math.sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y))
